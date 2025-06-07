@@ -9,8 +9,8 @@ wipefs --all /dev/sdc /dev/sda /dev/sdb /dev/nvme0n1
 
 # ----------------------------------------------
 echo "ZEROING FIRST AND LAST 5GB OF /DEV/SDC USING DD"
-dd if=/dev/zero of=/dev/sdc bs=1M count=$(( 5*1024 ))
-dd if=/dev/zero of=/dev/sdc bs=1M seek=$(( $(blockdev --getsize64 /dev/sdc)/1024/1024 - 5*1024 )) count=$(( 5*1024 ))
+dd if=/dev/zero of=/dev/sdc bs=1M count=$(( 5*1024 )) status=progress
+dd if=/dev/zero of=/dev/sdc bs=1M seek=$(( $(blockdev --getsize64 /dev/sdc)/1024/1024 - 5*1024 )) count=$(( 5*1024 )) status=progress
 
 # ----------------------------------------------
 echo "FORMATING REMAIN SOLID-STATE DRIVES USING BLKDISCARD"
